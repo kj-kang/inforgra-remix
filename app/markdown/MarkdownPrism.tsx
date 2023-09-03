@@ -104,13 +104,19 @@ export const MarkdownPrism = ({ code, lang }: MarkdownPrismProps) => {
     setTimeout(() => setIsCopied(false), 500);
   }
 
-  const tokens = Prism.tokenize(code, Prism.languages[lang]);
+  let tokens;
+  try {
+    tokens = Prism.tokenize(code, Prism.languages[lang]);
+  } catch {
+  }
 
   return (
-    <div className="relative">
-      <pre className="bg-[#2d2d2d] text-sm text-[#ccc] overflow-auto whitespace-auto break-normal rounded-lg p-2">
+    <div className="relative overflow-auto">
+      <pre className="bg-[#2d2d2d] text-sm text-[#ccc] whitespace-pre rounded-lg p-2">
 	<code className={`language-${lang}`}>
-	  {!lang || !Prism.languages[lang] ? code : <RenderTokens tokens={tokens} />}
+	  {tokens === undefined
+	    ? code
+	    : (!lang || !Prism.languages[lang]) ? code : <RenderTokens tokens={tokens} />}
 	</code>
       </pre>
       <button className="absolute top-0 right-0 mt-2 mr-2" onClick={handleClick}>

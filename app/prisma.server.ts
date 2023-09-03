@@ -64,6 +64,7 @@ export const upsertPost = async (post: Post) => {
       tags: { connectOrCreate: post.tags.map((tag) => ({ where: tag, create: tag })) },
       date: post.date || '',
       content: post.content,
+      published: post.published,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -74,6 +75,7 @@ export const upsertPost = async (post: Post) => {
       tags: { connectOrCreate: post.tags.map((tag) => ({ where: tag, create: tag })) },
       date: post.date || '',
       content: post.content,
+      published: post.published,
       updatedAt: new Date(),
     },
   })

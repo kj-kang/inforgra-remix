@@ -7,6 +7,9 @@ module.exports = {
   serverBuildPath: "build/index.js",
   publicPath: "/build/",
   serverModuleFormat: "cjs",
+  serverDependenciesToBundle: [
+    /^marked.*/,
+  ],
   future: {
     v2_dev: true,
     v2_errorBoundary: true,

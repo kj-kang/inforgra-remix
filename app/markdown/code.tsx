@@ -30,6 +30,7 @@ const Code = ({ type, raw, codeBlockStyle, lang, text, escaped }: Tokens.Code) =
 
   return (
     <div className="mt-4 mb-2">
+      {!config.lang && config.view === 'default' && (<MarkdownPrism code={text} lang={''} />)}
       {config.lang && config.view === 'default' && (<MarkdownPrism code={text} lang={config.lang} />)}
       {config.lang && config.view === 'markdown-preview' && <MarkdownPreview text={text} lang={config.lang} />}
       {config.lang && config.view === 'evaluation' && <MarkdownEvaluation code={text} lang={config.lang} />}

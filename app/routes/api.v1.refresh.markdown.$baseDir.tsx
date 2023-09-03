@@ -22,7 +22,6 @@ export const loader = async ({ params }: LoaderArgs) => {
       ...markdown,
       baseDir: baseDir,
       slug: baseName,
-      published: true,
     };
     await upsertPost(post);
   }

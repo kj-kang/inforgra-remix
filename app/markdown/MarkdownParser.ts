@@ -59,7 +59,7 @@ const reducer = (state: State, line: string, index: number) => {
 	  return { ...state, markdown: { ...state.markdown, date: new Date(value) }};
 	}
       } else if (key === 'published') {
-	return { ...state, markdown: { ...state.markdown, published: Boolean(value) }};
+	return { ...state, markdown: { ...state.markdown, published: value.toLowerCase() === 'true' }};
       } else {
 	return state;
       }

@@ -18,6 +18,7 @@ import Del from "./del";
 import Codespan from "./codespan";
 import MdMuiExtension from "./MDMuiExtension";
 import { Cellout } from "./cellout";
+import { BlockKatex, InlineKatex } from "./katex";
 
 interface TokenRendererProps {
   token: marked.Token;
@@ -84,6 +85,12 @@ const TokenRenderer = ({token}: TokenRendererProps) => {
     case "md-mui-extension":
       const component = token as marked.Tokens.Generic;
       return <MdMuiExtension {...component} />;
+    case "blockKatex":
+      const blockKatex = token as marked.Tokens.Generic;
+      return <BlockKatex {...blockKatex} />;
+    case "inlineKatex":
+      const inlineKatex = token as marked.Tokens.Generic;
+      return <InlineKatex {...inlineKatex} />;
     default:
       return <></>;
   }

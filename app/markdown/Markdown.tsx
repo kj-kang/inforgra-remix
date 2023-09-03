@@ -1,4 +1,4 @@
-import { addHashToHeading, cellOut, markedMuiExtension } from "@/markdown/MarkdownMarked";
+import { addHashToHeading, blockKatex, cellOut, inlineKatex, katex, katex2, markedMuiExtension } from "@/markdown/MarkdownMarked";
 import TokensRenderer from "@/markdown/TokensRenderer";
 import { TableOfContent } from "@/markdown/markdown.d";
 import { marked } from "marked";
@@ -15,7 +15,7 @@ export const Markdown = ({ markdown }: MarkdownProps) => {
   const { setHeader, setTableOfContent } = useMarkdownContext();
 
   marked.use({ gfm: true, headerIds: false, mangle: false})
-  marked.use({ extensions: [ cellOut, markedMuiExtension ] })
+  marked.use({ extensions: [ cellOut, blockKatex, inlineKatex, markedMuiExtension ] })
 
   const { header, tokens, tableOfContent } = marked.parse2(markdown, [addHashToHeading]);
 

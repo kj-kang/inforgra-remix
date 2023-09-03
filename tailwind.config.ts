@@ -18,11 +18,12 @@ const config: Config = {
     },
   },
   plugins: [
-    plugin(function({ addBase }) {
+    plugin(function({ addBase, theme }) {
       addBase({
 	'html': { fontFamily: ['Inter', 'Nanum Gothic'], fontSize: '18px', fontWeight: '400' }
       })
     })
   ],
 }
+
 export default config
