@@ -1,0 +1,6 @@
+pysqlite3
+requests
+tabulate
+urllib3
+lxml
+BeautifulSoup4

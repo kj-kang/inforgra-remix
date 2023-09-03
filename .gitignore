@@ -1,0 +1,9 @@
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+/scripts/.venv/
+/prisma/dev.db
+/scripts/sitechecker/__pycache__/

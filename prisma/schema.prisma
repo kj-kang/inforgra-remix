@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id          Int             @id @default(autoincrement())
+  baseDir     String
+  slug        String   
+  title       String
+  description String?
+  tags        Tag[]
+  image       String?
+  date        DateTime?
+  content     String?
+  published   Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @default(now())
+  @@unique([baseDir, slug])
+  @@index([baseDir, published, date])
+}
+
+model Tag {
+  id          Int             @id @default(autoincrement())
+  name        String          @unique
+  posts       Post[]
+}
+
+model Site {
+  id              Int             @id @default(autoincrement())
+  type            String
+  name            String
+  hname           String
+  logo            String?
+  state           String
+  link            String?
+  pageSpeed       Float?
+  pageSize        Int?
+  lastCheckedAt   DateTime?
+  lastSuccessedAt DateTime?
+  lastFailedAt    DateTime?
+  setting         String
+  more            String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime
+  log             Log[]
+  @@index([type,updatedAt])
+}
+
+model Log {
+  id          Int             @id @default(autoincrement())
+  site        Site            @relation(fields: [siteId], references: [id])
+  siteId      Int               
+  name        String
+  createdAt   DateTime        @default(now())
+  attrs       String?
+}
